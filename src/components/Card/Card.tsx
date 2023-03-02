@@ -1,4 +1,4 @@
-import { iCard } from "../interfaces";
+import { iCard } from "../../interfaces";
 import { BsStarFill } from "react-icons/bs";
 import { IoIosCopy, IoIosCheckmarkCircle } from "react-icons/io";
 import { AiFillWarning } from "react-icons/ai";

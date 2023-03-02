@@ -1,21 +1,25 @@
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { CgMenuGridR } from "react-icons/cg";
-import FiltersBar from "./FiltersBar";
+import Navbar from "./Navbar";
 
 type Props = {
-  changeLayout: React.Dispatch<React.SetStateAction<string>>;
-  layoutMode: string;
+  filtersBarState: boolean;
+  changeFilters: (filterName: string, value: string) => void;
+  changeFiltersBarState: () => void;
 };
 
 const Header = (props: Props) => {
-  const [filtersBarState, setFiltersBarState] = useState<boolean>(true);
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    props.changeFilters("inputValue", target.value);
+  };
 
   return (
     <>
-      <header
+      <Navbar />
+      <section
         className={`flex flex-col lg:flex-row justify-between items-center max-w-7xl w-full mx-auto lg:pt-1 pb-2 lg:pb-5  ${
-          !filtersBarState && "border-b-[1px] border-primaryGrey pb-8"
+          !props.filtersBarState && "border-b-[1px] border-primaryGrey pb-8"
         }`}
       >
         <h1 className="text-4xl px-1 text-secondaryBlue mb-2 lg:mb-0">
@@ -26,26 +30,21 @@ const Header = (props: Props) => {
           <div className="flex items-center border-[1px] w-full lg:w-auto border-primaryGrey bg-primaryWhite py-2 px-3">
             <BsSearch className="ml-1 mr-4 text-primaryBlue" />
             <input
+              onChange={(e) => handleChange(e)}
               placeholder="Search"
               className="w-full lg:w-auto py-[2px] lg:pr-8 bg-primaryWhite text-secondaryGrey outline-none"
             />
           </div>
           <button
             className="ml-4 bg-primaryWhite border-[1px] border-primaryGrey px-3"
-            onClick={() => setFiltersBarState(!filtersBarState)}
+            onClick={props.changeFiltersBarState}
           >
             <abbr title="Filters bar">
               <CgMenuGridR className="text-2xl text-secondaryGrey" />
             </abbr>
           </button>
         </section>
-      </header>
-      {filtersBarState && (
-        <FiltersBar
-          changeLayout={props.changeLayout}
-          layoutMode={props.layoutMode}
-        />
-      )}
+      </section>
     </>
   );
 };

@@ -1,13 +1,26 @@
 import Head from "next/head";
-import Header from "@/components/Header";
-import Navbar from "@/components/Navbar";
-import CardSection from "@/components/CardSection";
+import Header from "@/components/Header/Header";
+import CardSection from "@/components/Card/CardSection";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { useState } from "react";
+import { iFilters } from "@/interfaces";
+import CardContainer from "@/components/Card/CardContainer";
 import data from "../fakeData.json";
+import FiltersBar from "@/components/FiltersBar";
 
 export default function Home() {
+  const [filtersBarState, setFiltersBarState] = useState<boolean>(true);
   const [layoutMode, setLayoutMode] = useState("grid");
+  const [filters, setFilters] = useState<iFilters>({
+    inputValue: "",
+    section: "all",
+    orderBy: "name",
+    type: "all",
+  });
+
+  const changeFiltersBarState = () => setFiltersBarState(!filtersBarState);
+  const changeFilters = (filterName: string, value: string) =>
+    setFilters({ ...filters, [filterName]: value });
 
   return (
     <>
@@ -17,28 +30,32 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="min-h-screen relative">
-        <header className="z-40 sticky top-0 bg-secondaryWhite">
-          <Navbar/>
-          <Header changeLayout={setLayoutMode} layoutMode={layoutMode} />
-        </header>
+      <main className="min-h-screen relative-">
+        <section className="z-40 sticky top-0 bg-secondaryWhite">
+          <Header
+            filtersBarState={filtersBarState}
+            changeFiltersBarState={changeFiltersBarState}
+            changeFilters={changeFilters}
+          />
+
+          {filtersBarState && (
+            <FiltersBar
+              changeFilters={changeFilters}
+              changeLayout={setLayoutMode}
+              layoutMode={layoutMode}
+            />
+          )}
+        </section>
+
         <section className="max-w-7xl w-full mx-auto">
-          <CardSection
-            title="pending"
+          <CardContainer
+            filters={filters}
             cardList={data.cards}
-            layoutMode={layoutMode}
-          />
-          <CardSection
-            title="pending"
-            cardList={data.cards}
-            layoutMode={layoutMode}
-          />
-          <CardSection
-            title="pending"
-            cardList={data.cards}
+            filtersBarState={filtersBarState}
             layoutMode={layoutMode}
           />
         </section>
+
         <ScrollToTopButton />
       </main>
     </>

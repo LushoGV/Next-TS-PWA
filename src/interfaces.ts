@@ -7,3 +7,10 @@ export interface iCard {
   favorite: boolean;
   date: string;
 }
+
+export interface iFilters {
+  inputValue: string,
+  section: string,
+  orderBy: string,
+  type: string
+}

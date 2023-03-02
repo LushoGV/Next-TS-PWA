@@ -3,6 +3,7 @@ import { TfiLayoutGrid2Alt } from "react-icons/tfi";
 import { HiOutlineViewList } from "react-icons/hi";
 
 type Props = {
+  changeFilters: (filterName: string, value: string) => void;
   changeLayout: React.Dispatch<React.SetStateAction<string>>;
   layoutMode: string;
 };
@@ -22,7 +23,9 @@ const FiltersBar = (props: Props) => {
         {tabOptions.map((element, index) => (
           <li
             key={index}
-            onClick={() => setTabSelected(index)}
+            onClick={() => {
+              setTabSelected(index), props.changeFilters("section", element);
+            }}
             className={`${
               tabSelected === index
                 ? "border-primaryBlue text-primaryBlue"
