@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Header from "@/components/Header/Header";
-import CardSection from "@/components/Card/CardSection";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { useState } from "react";
 import { iFilters } from "@/interfaces";

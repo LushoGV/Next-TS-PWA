@@ -32,7 +32,7 @@ const CardMenu = () => {
             </abbr>
           </li>
           <li
-            className="p-2 border-r-[1px] border-primaryGrey text-secondaryGrey hover:text-primaryBlue text-2xl"
+            className="p-2 border-primaryGrey text-secondaryGrey hover:text-primaryBlue text-2xl"
             onClick={changeMenuState}
           >
             <abbr title="Close">
