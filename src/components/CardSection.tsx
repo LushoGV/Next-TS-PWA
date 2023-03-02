@@ -5,14 +5,15 @@ import Card from "./Card";
 type Props = {
   title: string;
   cardList: iCard[];
+  layoutMode: string
 };
 
 const CardSection = (props: Props) => (
-  <section>
-    <header className="py-6 text-2xl first-letter:uppercase">
+  <section className="mb-8 mx-4 lg:mx-0">
+    <header className="py-6 text-3xl first-letter:uppercase text-secondaryBlue">
       {props.title}
     </header>
-    <section className="flex">
+    <section className={`${props.layoutMode === "grid" ? "grid" : "flex flex-col"} lg:grid-cols-4 gap-x-5 gap-y-6`}>
       {props.cardList.map((element, index) => (
         <Card
           key={index}
