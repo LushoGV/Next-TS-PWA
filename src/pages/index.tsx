@@ -5,7 +5,8 @@ import { useState } from "react";
 import { iFilters } from "@/interfaces";
 import CardContainer from "@/components/Card/CardContainer";
 import data from "../fakeData.json";
-import FiltersBar from "@/components/FiltersBar";
+import FiltersBar from "@/components/Filter/FiltersBar";
+import CreateTaskButton from "@/components/CreateTaskButton";
 
 export default function Home() {
   const [filtersBarState, setFiltersBarState] = useState<boolean>(true);
@@ -13,12 +14,11 @@ export default function Home() {
   const [filters, setFilters] = useState<iFilters>({
     inputValue: "",
     section: "all",
-    orderBy: "name",
-    type: "all",
+    orderBy: 0,
   });
 
   const changeFiltersBarState = () => setFiltersBarState(!filtersBarState);
-  const changeFilters = (filterName: string, value: string) =>
+  const changeFilters = (filterName: string, value: string | number) =>
     setFilters({ ...filters, [filterName]: value });
 
   return (
@@ -29,7 +29,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="min-h-screen relative-">
+      <main className="min-h-screen relative z-40">
         <section className="z-40 sticky top-0 bg-secondaryWhite">
           <Header
             filtersBarState={filtersBarState}
@@ -55,7 +55,10 @@ export default function Home() {
           />
         </section>
 
-        <ScrollToTopButton />
+        <div className="flex flex-col items-center right-0 bottom-0 fixed">
+          <ScrollToTopButton />
+          <CreateTaskButton />
+        </div>
       </main>
     </>
   );

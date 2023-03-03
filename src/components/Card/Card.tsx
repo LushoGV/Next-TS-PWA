@@ -2,40 +2,25 @@ import { iCard } from "../../interfaces";
 import { BsStarFill } from "react-icons/bs";
 import { IoIosCopy, IoIosCheckmarkCircle } from "react-icons/io";
 import { AiFillWarning } from "react-icons/ai";
+import { useModalContext } from "@/context/useModalContext";
 import CardMenu from "./CardMenu";
+import FavoritesButton from "../FavoritesButton";
+import CardStatus from "./CardStatus";
 
 const Card = (props: iCard) => {
+  const { changeCardModalState } = useModalContext();
+
   return (
-    <article className="flex flex-col bg-primaryWhite justify-between border-[1px] border-primaryGrey min-w-[260px] min-h-[240px] p-3 hover:shadow-lg hover:cursor-pointer lg:hover:-translate-y-3 transition-all duration-300">
+    <article
+      onClick={() => changeCardModalState(props.id.toString())}
+      className="flex flex-col bg-primaryWhite justify-between border-[1px] border-primaryGrey min-w-[260px] min-h-[240px] p-3 hover:shadow-lg hover:cursor-pointer lg:hover:-translate-y-3 transition-all duration-300"
+    >
       <header className="flex items-start justify-between p-4 pb-1">
-        <div className="bg-primaryBlue bg-opacity-10 p-4 rounded-full relative">
-          <IoIosCopy className="text-2xl text-primaryBlue" />
+        <CardStatus status={props.status} />
 
-          {props.status && (
-            <div className="absolute top-0 -right-2 text-2xl">
-              {/* <AiFillWarning className="text-red-400 text-2xl"/> */}
-              <IoIosCheckmarkCircle className="text-green-500 text-2xl" />
-            </div>
-          )}
-        </div>
-
-        <div className="flex mt-2">
-          <button
-            className={`text-xl ${
-              props.favorite
-                ? "text-primaryYellow"
-                : "text-primaryGrey hover:text-primaryYellow"
-            }  px-3 cursor-pointer`}
-          >
-            <abbr
-              title={
-                props.favorite ? "Remove to favorites" : "Add to favorites"
-              }
-            >
-              <BsStarFill />
-            </abbr>
-          </button>
-          <CardMenu />
+        <div className="flex items-center mt-2">
+          <FavoritesButton favorite={props.favorite} />
+          <CardMenu cardId={props.id.toString()} />
         </div>
       </header>
 

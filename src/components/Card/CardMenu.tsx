@@ -2,14 +2,19 @@ import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import { MdClose } from "react-icons/md";
 import { TbEdit, TbTrash } from "react-icons/tb";
+import OptionsMenu from "../OptionsMenu";
 
-const CardMenu = () => {
+type Props = {
+  cardId: string;
+};
+
+const CardMenu = (props: Props) => {
   const [menuState, setMenuState] = useState(false);
 
   const changeMenuState = () => setMenuState(!menuState);
 
   return (
-    <div className="relative pt-1">
+    <div className="ml-2 relative pt-1" onClick={(e) => e.stopPropagation()}>
       <button
         className="text-xl text-primaryGrey hover:text-secondaryGrey"
         onClick={changeMenuState}
@@ -20,26 +25,9 @@ const CardMenu = () => {
       </button>
 
       {menuState && (
-        <ul className="absolute top-0 right-0 flex bg-primaryWhite border-[1px] border-primaryGrey shadow-md">
-          <li className="p-2 border-r-[1px] border-primaryGrey text-secondaryGrey hover:text-primaryBlue text-2xl">
-            <abbr title="Edit">
-              <TbEdit />
-            </abbr>
-          </li>
-          <li className="p-2 border-r-[1px] border-primaryGrey text-secondaryGrey hover:text-red-500 text-2xl">
-            <abbr title="Delete">
-              <TbTrash />
-            </abbr>
-          </li>
-          <li
-            className="p-2 border-primaryGrey text-secondaryGrey hover:text-primaryBlue text-2xl"
-            onClick={changeMenuState}
-          >
-            <abbr title="Close">
-              <MdClose />
-            </abbr>
-          </li>
-        </ul>
+        <div className="absolute top-0 right-0 flex bg-primaryWhite border-[1px] border-primaryGrey shadow-md py-2 pr-2">
+          <OptionsMenu closeFunction={changeMenuState} cardId={props.cardId} borders />
+        </div>
       )}
     </div>
   );

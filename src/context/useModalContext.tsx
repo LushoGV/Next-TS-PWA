@@ -5,8 +5,11 @@ interface ProviderProps {
 }
 interface context {
   modalState: boolean;
+  modalContent: iModalContent;
   changeModalState: () => void;
   changeModalContent: (params: iModalContent) => void;
+  cardModalState: boolean | string;
+  changeCardModalState: (id?:string) => void;
 }
 interface iModalContent {
   title: string;
@@ -31,6 +34,7 @@ export const ModalProvider = ({ children }: ProviderProps) => {
       function: () => {},
     },
   });
+  const [cardModalState, seCardModalState] = useState<boolean | string>(false);
 
   const changeModalState = () => setModalState(!modalState);
 
@@ -49,16 +53,18 @@ export const ModalProvider = ({ children }: ProviderProps) => {
     });
   };
 
+  const changeCardModalState = (id?:string) => id ? seCardModalState(id) : seCardModalState(false);
+
   return (
     <ModalContext.Provider
-      value={{ modalState, changeModalState, changeModalContent }}
+      value={{ modalState, modalContent, changeModalState, changeModalContent, cardModalState, changeCardModalState }}
     >
       {children}
     </ModalContext.Provider>
   );
 };
 
-export const useModalProvider = () => {
-  const { modalState, changeModalState, changeModalContent } = useContext(ModalContext);
-  return { modalState, changeModalState, changeModalContent };
+export const useModalContext = () => {
+  const { modalState, modalContent, changeModalState, changeModalContent, cardModalState, changeCardModalState } = useContext(ModalContext);
+  return { modalState, modalContent, changeModalState, changeModalContent, cardModalState, changeCardModalState };
 };

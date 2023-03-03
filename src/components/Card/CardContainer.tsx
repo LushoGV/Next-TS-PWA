@@ -21,6 +21,48 @@ const CardContainer = (props: Props) => {
     { title: "completed", data: [] },
   ]);
 
+  const sortFunction = (data: iCard[]): iCard[] => {
+    let sortedData = data;
+
+    switch (props.filters.orderBy) {
+      case 0:
+        sortedData = data.sort((a: iCard, b: iCard) => {
+          if (a.title < b.title) return -1;
+
+          if (a.title > b.title) return 1;
+
+          return 0;
+        });
+        break;
+
+      case 1:
+        sortedData = data.sort((a: iCard, b: iCard) => {
+          if (a.title > b.title) return -1;
+
+          if (a.title < b.title) return 1;
+
+          return 0;
+        });
+        break;
+
+      case 2:
+        sortedData = data.sort((a: iCard, b: iCard) => {
+          if (a.date < b.date) return -1;
+
+          if (a.date > b.date) return 1;
+
+          return 0;
+        });
+        break;
+
+      default:
+        break;
+    }
+
+    // console.log(sortedData);
+    return sortedData;
+  };
+
   const filterDataByInput = (): iCard[] | [] => {
     const filteredData = props.cardList.filter((element) =>
       element.title
@@ -33,9 +75,11 @@ const CardContainer = (props: Props) => {
   };
 
   const filterWithoutInput = (dataToFilter: iCard[]) => {
-    const favorites = dataToFilter.filter((element) => element.favorite);
-    const pending = dataToFilter.filter((element) => !element.status);
-    const completed = dataToFilter.filter((element) => element.status);
+    const data = sortFunction(dataToFilter);
+
+    const favorites = data.filter((element) => element.favorite);
+    const pending = data.filter((element) => !element.status);
+    const completed = data.filter((element) => element.status);
 
     setContent([
       { title: content[0].title, data: favorites },
@@ -57,6 +101,14 @@ const CardContainer = (props: Props) => {
       filterWithoutInput(props.cardList);
     }
   }, [props.filters.inputValue]);
+
+  useEffect(() => {
+    if (props.filters.inputValue.length) {
+      filterWithoutInput(filterDataByInput());
+    } else {
+      filterWithoutInput(props.cardList);
+    }
+  }, [props.filters.orderBy]);
 
   if (props.filters.section === "pending")
     return (

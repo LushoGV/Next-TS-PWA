@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { TfiLayoutGrid2Alt } from "react-icons/tfi";
 import { HiOutlineViewList } from "react-icons/hi";
+import SortButton from "./SortButton";
 
 type Props = {
-  changeFilters: (filterName: string, value: string) => void;
+  changeFilters: (filterName: string, value: string | number) => void;
   changeLayout: React.Dispatch<React.SetStateAction<string>>;
   layoutMode: string;
 };
@@ -38,7 +39,7 @@ const FiltersBar = (props: Props) => {
       </ul>
 
       <section className="flex w-full lg:w-auto mb-5 lg:m-0 px-4 lg:px-0">
-        <button className="mx-auto ml-0 lg:mr-8">BY DATE</button>
+        <SortButton changeFilters={props.changeFilters} />
 
         {layoutOptions.map((element, index) => (
           <button
