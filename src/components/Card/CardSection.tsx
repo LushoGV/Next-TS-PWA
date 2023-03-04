@@ -1,10 +1,10 @@
-import { iCard } from "@/interfaces";
+import { iTask } from "@/interfaces";
 import React from "react";
 import Card from "./Card";
 
 type Props = {
   title: string | null;
-  cardList: iCard[];
+  cardList: iTask[];
   layoutMode: string;
 };
 

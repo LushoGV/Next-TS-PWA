@@ -1,4 +1,4 @@
-export interface iCard {
+export interface iTask {
   id: number;
   title: string;
   short_description: string;

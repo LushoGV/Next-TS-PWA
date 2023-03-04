@@ -1,26 +1,31 @@
-import { iCard } from "../../interfaces";
-import { BsStarFill } from "react-icons/bs";
-import { IoIosCopy, IoIosCheckmarkCircle } from "react-icons/io";
-import { AiFillWarning } from "react-icons/ai";
+import { iTask } from "../../interfaces";
 import { useModalContext } from "@/context/useModalContext";
 import CardMenu from "./CardMenu";
-import FavoritesButton from "../FavoritesButton";
+import FavoriteButton from "../FavoriteButton";
 import CardStatus from "./CardStatus";
+import { useTaskContext } from "@/context/useTaskContext";
 
-const Card = (props: iCard) => {
+const Card = (props: iTask) => {
   const { changeCardModalState } = useModalContext();
+  const {changeTaskState} = useTaskContext()
+
+  const favoriteFunction = () => 
+    changeTaskState(props.id, "favorite")
+
+  const statusFunction = () => 
+    props.id && changeTaskState(props.id, "status")
 
   return (
     <article
-      onClick={() => changeCardModalState(props.id.toString())}
+      onClick={() => changeCardModalState(props.id)}
       className="flex flex-col bg-primaryWhite justify-between border-[1px] border-primaryGrey min-w-[260px] min-h-[240px] p-3 hover:shadow-lg hover:cursor-pointer lg:hover:-translate-y-3 transition-all duration-300"
     >
       <header className="flex items-start justify-between p-4 pb-1">
-        <CardStatus status={props.status} />
+        <CardStatus status={props.status} function={statusFunction} />
 
         <div className="flex items-center mt-2">
-          <FavoritesButton favorite={props.favorite} />
-          <CardMenu cardId={props.id.toString()} />
+          <FavoriteButton favorite={props.favorite} function={favoriteFunction} />
+          <CardMenu cardId={props.id} />
         </div>
       </header>
 

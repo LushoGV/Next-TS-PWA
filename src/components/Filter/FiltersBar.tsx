@@ -19,7 +19,7 @@ const FiltersBar = (props: Props) => {
   const [tabSelected, setTabSelected] = useState<number>(0);
 
   return (
-    <nav className="max-w-7xl w-full mx-auto mb-2 flex flex-col-reverse lg:flex-row border-b-[1px] border-primaryGrey">
+    <nav className="max-w-7xl w-full mx-auto lg:mb-2 lg:px-4 flex flex-col-reverse lg:flex-row border-b-[1px] border-primaryGrey">
       <ul className="flex mx-auto w-full lg:w-auto lg:ml-0 text-sm">
         {tabOptions.map((element, index) => (
           <li
@@ -47,7 +47,7 @@ const FiltersBar = (props: Props) => {
               props.layoutMode === element.name
                 ? "text-primaryBlue"
                 : "text-secondaryGrey"
-            } ${element.name === "grid" ? "text-sm" : "text-xl"} pr-2`}
+            } ${element.name === "grid" ? "text-sm" : "text-xl"} ${index !== layoutOptions.length-1 && "pr-2"}`}
             onClick={() => props.changeLayout(element.name)}
             key={index}
           >

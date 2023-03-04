@@ -7,6 +7,7 @@ import CardContainer from "@/components/Card/CardContainer";
 import data from "../fakeData.json";
 import FiltersBar from "@/components/Filter/FiltersBar";
 import CreateTaskButton from "@/components/CreateTaskButton";
+import Form from "@/components/Form";
 
 export default function Home() {
   const [filtersBarState, setFiltersBarState] = useState<boolean>(true);
@@ -46,7 +47,7 @@ export default function Home() {
           )}
         </section>
 
-        <section className="max-w-7xl w-full mx-auto">
+        <section className="max-w-7xl w-full mx-auto lg:px-4">
           <CardContainer
             filters={filters}
             cardList={data.cards}
@@ -54,10 +55,10 @@ export default function Home() {
             layoutMode={layoutMode}
           />
         </section>
-
+        
         <div className="flex flex-col items-center right-0 bottom-0 fixed">
           <ScrollToTopButton />
-          <CreateTaskButton />
+          <CreateTaskButton mobileMode />
         </div>
       </main>
     </>

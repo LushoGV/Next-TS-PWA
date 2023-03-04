@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
-import { MdClose } from "react-icons/md";
-import { TbEdit, TbTrash } from "react-icons/tb";
 import OptionsMenu from "../OptionsMenu";
 
 type Props = {
-  cardId: string;
+  cardId: number;
 };
 
 const CardMenu = (props: Props) => {

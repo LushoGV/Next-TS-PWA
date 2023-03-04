@@ -1,41 +1,50 @@
 import { useModalContext } from "@/context/useModalContext";
 import { useState, useEffect } from "react";
-import { IoIosCheckmarkCircle, IoIosCopy } from "react-icons/io";
-import { MdClose } from "react-icons/md";
-import { iCard } from "@/interfaces";
+import { iTask } from "@/interfaces";
 import OptionsMenu from "../OptionsMenu";
-import FavoritesButton from "../FavoritesButton";
+import FavoriteButton from "../FavoriteButton";
 import CardStatus from "../Card/CardStatus";
-import CardMenu from "../Card/CardMenu";
-import data from "../../fakeData.json";
+import { useTaskContext } from "@/context/useTaskContext";
 
 type Props = {
-  id?: boolean | string;
+  id?: number;
 };
 
 const CardModal = (props: Props) => {
-  const [cardContent, setCardContent] = useState<iCard>();
+  const [cardContent, setCardContent] = useState<iTask>();
   const { changeCardModalState } = useModalContext();
+  const {tasks, changeTaskState} = useTaskContext()
+
+  const favoriteFunction = () => {
+    props.id && changeTaskState(props.id, "favorite")
+  }
+
+  const statusFunction = () => {
+    props.id && changeTaskState(props.id, "status")
+  }
 
   useEffect(() => {
     if (props.id) {
-      const cardFinded = data.cards.filter(
-        (element) => element.id.toString() === props.id
+      const cardFinded = tasks.filter(
+        (element) => element.id === props.id
       );
       setCardContent(cardFinded[0]);
     }
   }, [props.id]);
 
   return (
-    <article className="z-40 bg-primaryWhite border-[1px] border-secondaryGrey max-w-xl w-full mx-2" onClick={(e) => e.stopPropagation()}>
+    <article
+      className="z-40 bg-primaryWhite border-[1px] border-secondaryGrey max-w-xl w-full mx-2"
+      onClick={(e) => e.stopPropagation()}
+    >
       <header className="flex items-start justify-between p-4">
-      {cardContent && <CardStatus status={cardContent?.status}/>}
+        {cardContent && <CardStatus status={cardContent?.status} function={statusFunction} />}
 
         <div className="flex flex-row-reverse items-center mt-1">
           {cardContent && (
             <>
               <OptionsMenu
-                cardId={cardContent.id.toString()}
+                cardId={cardContent.id}
                 closeFunction={changeCardModalState}
               />
             </>
@@ -57,7 +66,7 @@ const CardModal = (props: Props) => {
         <span>{cardContent?.date}</span>
         {cardContent && (
           <div className="flex items-center">
-            <FavoritesButton favorite={cardContent?.favorite} />
+            <FavoriteButton favorite={cardContent?.favorite} function={favoriteFunction} />
           </div>
         )}
       </footer>

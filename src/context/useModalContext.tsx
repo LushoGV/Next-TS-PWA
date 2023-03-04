@@ -8,8 +8,8 @@ interface context {
   modalContent: iModalContent;
   changeModalState: () => void;
   changeModalContent: (params: iModalContent) => void;
-  cardModalState: boolean | string;
-  changeCardModalState: (id?:string) => void;
+  cardModalState?: number;
+  changeCardModalState: (id?:number) => void;
 }
 interface iModalContent {
   title: string;
@@ -34,7 +34,7 @@ export const ModalProvider = ({ children }: ProviderProps) => {
       function: () => {},
     },
   });
-  const [cardModalState, seCardModalState] = useState<boolean | string>(false);
+  const [cardModalState, seCardModalState] = useState<number | undefined>(undefined);
 
   const changeModalState = () => setModalState(!modalState);
 
@@ -53,7 +53,7 @@ export const ModalProvider = ({ children }: ProviderProps) => {
     });
   };
 
-  const changeCardModalState = (id?:string) => id ? seCardModalState(id) : seCardModalState(false);
+  const changeCardModalState = (id?:number) => id ? seCardModalState(id) : seCardModalState(undefined);
 
   return (
     <ModalContext.Provider

@@ -1,9 +1,10 @@
-import { iCard, iFilters } from "@/interfaces";
+import { useTaskContext } from "@/context/useTaskContext";
+import { iTask, iFilters } from "@/interfaces";
 import { useEffect, useState } from "react";
 import CardSection from "./CardSection";
 
 type Props = {
-  cardList: iCard[];
+  cardList: iTask[];
   filters: iFilters;
   filtersBarState: boolean;
   layoutMode: string;
@@ -11,7 +12,7 @@ type Props = {
 
 interface iCardContainer {
   title: string;
-  data: iCard[] | [];
+  data: iTask[] | [];
 }
 
 const CardContainer = (props: Props) => {
@@ -21,12 +22,14 @@ const CardContainer = (props: Props) => {
     { title: "completed", data: [] },
   ]);
 
-  const sortFunction = (data: iCard[]): iCard[] => {
+  const {tasks} = useTaskContext()
+
+  const sortFunction = (data: iTask[]): iTask[] => {
     let sortedData = data;
 
     switch (props.filters.orderBy) {
       case 0:
-        sortedData = data.sort((a: iCard, b: iCard) => {
+        sortedData = data.sort((a: iTask, b: iTask) => {
           if (a.title < b.title) return -1;
 
           if (a.title > b.title) return 1;
@@ -36,7 +39,7 @@ const CardContainer = (props: Props) => {
         break;
 
       case 1:
-        sortedData = data.sort((a: iCard, b: iCard) => {
+        sortedData = data.sort((a: iTask, b: iTask) => {
           if (a.title > b.title) return -1;
 
           if (a.title < b.title) return 1;
@@ -46,7 +49,7 @@ const CardContainer = (props: Props) => {
         break;
 
       case 2:
-        sortedData = data.sort((a: iCard, b: iCard) => {
+        sortedData = data.sort((a: iTask, b: iTask) => {
           if (a.date < b.date) return -1;
 
           if (a.date > b.date) return 1;
@@ -63,8 +66,8 @@ const CardContainer = (props: Props) => {
     return sortedData;
   };
 
-  const filterDataByInput = (): iCard[] | [] => {
-    const filteredData = props.cardList.filter((element) =>
+  const filterDataByInput = (): iTask[] | [] => {
+    const filteredData = tasks.filter((element) =>
       element.title
         .toLowerCase()
         .trim()
@@ -74,7 +77,7 @@ const CardContainer = (props: Props) => {
     return filteredData;
   };
 
-  const filterWithoutInput = (dataToFilter: iCard[]) => {
+  const filterWithoutInput = (dataToFilter: iTask[]) => {
     const data = sortFunction(dataToFilter);
 
     const favorites = data.filter((element) => element.favorite);
@@ -89,16 +92,22 @@ const CardContainer = (props: Props) => {
   };
 
   useEffect(() => {
-    if (props.cardList.length) {
-      filterWithoutInput(props.cardList);
+    if (tasks.length) {
+      filterWithoutInput(tasks);
+    }else{
+      setContent([
+        { title: content[0].title, data: [] },
+        { title: content[1].title, data: [] },
+        { title: content[2].title, data: [] },
+      ]);
     }
-  }, [props.cardList]);
+  }, [tasks]);
 
   useEffect(() => {
     if (props.filters.inputValue.length) {
       filterWithoutInput(filterDataByInput());
     } else {
-      filterWithoutInput(props.cardList);
+      filterWithoutInput(tasks);
     }
   }, [props.filters.inputValue]);
 
@@ -106,7 +115,7 @@ const CardContainer = (props: Props) => {
     if (props.filters.inputValue.length) {
       filterWithoutInput(filterDataByInput());
     } else {
-      filterWithoutInput(props.cardList);
+      filterWithoutInput(tasks);
     }
   }, [props.filters.orderBy]);
 
