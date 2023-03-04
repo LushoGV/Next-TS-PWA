@@ -5,6 +5,7 @@ import OptionsMenu from "../OptionsMenu";
 import FavoriteButton from "../FavoriteButton";
 import CardStatus from "../Card/CardStatus";
 import { useTaskContext } from "@/context/useTaskContext";
+import CardDate from "../Card/CardDate";
 
 type Props = {
   id?: number;
@@ -13,21 +14,19 @@ type Props = {
 const CardModal = (props: Props) => {
   const [cardContent, setCardContent] = useState<iTask>();
   const { changeCardModalState } = useModalContext();
-  const {tasks, changeTaskState} = useTaskContext()
+  const { tasks, changeTaskState } = useTaskContext();
 
   const favoriteFunction = () => {
-    props.id && changeTaskState(props.id, "favorite")
-  }
+    props.id && changeTaskState(props.id, "favorite");
+  };
 
   const statusFunction = () => {
-    props.id && changeTaskState(props.id, "status")
-  }
+    props.id && changeTaskState(props.id, "status");
+  };
 
   useEffect(() => {
     if (props.id) {
-      const cardFinded = tasks.filter(
-        (element) => element.id === props.id
-      );
+      const cardFinded = tasks.filter((element) => element.id === props.id);
       setCardContent(cardFinded[0]);
     }
   }, [props.id]);
@@ -38,7 +37,9 @@ const CardModal = (props: Props) => {
       onClick={(e) => e.stopPropagation()}
     >
       <header className="flex items-start justify-between p-4">
-        {cardContent && <CardStatus status={cardContent?.status} function={statusFunction} />}
+        {cardContent && (
+          <CardStatus status={cardContent?.status} function={statusFunction} />
+        )}
 
         <div className="flex flex-row-reverse items-center mt-1">
           {cardContent && (
@@ -53,21 +54,26 @@ const CardModal = (props: Props) => {
       </header>
 
       <section className="py-2 px-5">
-        <header className="mb-6">
+        <header className="mb-6 max-w-[500px] truncate">
           <span className="text-base font-semibold text-primaryBlue">
             {cardContent?.short_description}
           </span>
-          <h1 className="text-xl font-semibold">{cardContent?.title}</h1>
+          <h1 className="text-xl font-semibold first-letter:uppercase max-w-[500px] truncate">{cardContent?.title}</h1>
         </header>
         <section>{cardContent?.description}</section>
       </section>
 
       <footer className="p-4 flex items-center justify-between first-letter:uppercase text-secondaryGrey">
-        <span>{cardContent?.date}</span>
         {cardContent && (
-          <div className="flex items-center">
-            <FavoriteButton favorite={cardContent?.favorite} function={favoriteFunction} />
-          </div>
+          <>
+            <CardDate date={cardContent?.date} />
+            <div className="flex items-center">
+              <FavoriteButton
+                favorite={cardContent?.favorite}
+                function={favoriteFunction}
+              />
+            </div>
+          </>
         )}
       </footer>
     </article>

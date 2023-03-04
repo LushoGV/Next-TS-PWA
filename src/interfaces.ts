@@ -5,7 +5,7 @@ export interface iTask {
   description: string;
   status: boolean;
   favorite: boolean;
-  date: string;
+  date: Date;
 }
 
 export interface iFilters {

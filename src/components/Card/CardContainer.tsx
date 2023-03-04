@@ -21,8 +21,9 @@ const CardContainer = (props: Props) => {
     { title: "pending", data: [] },
     { title: "completed", data: [] },
   ]);
+  const [searchContent, setSearchContent] = useState<iTask[] | []>([]);
 
-  const {tasks} = useTaskContext()
+  const { tasks } = useTaskContext();
 
   const sortFunction = (data: iTask[]): iTask[] => {
     let sortedData = data;
@@ -94,7 +95,7 @@ const CardContainer = (props: Props) => {
   useEffect(() => {
     if (tasks.length) {
       filterWithoutInput(tasks);
-    }else{
+    } else {
       setContent([
         { title: content[0].title, data: [] },
         { title: content[1].title, data: [] },
@@ -105,7 +106,7 @@ const CardContainer = (props: Props) => {
 
   useEffect(() => {
     if (props.filters.inputValue.length) {
-      filterWithoutInput(filterDataByInput());
+      setSearchContent(filterDataByInput());
     } else {
       filterWithoutInput(tasks);
     }
@@ -143,6 +144,15 @@ const CardContainer = (props: Props) => {
           />
         )}
       </>
+    );
+
+  if (props.filters.inputValue.length > 0)
+    return (
+      <CardSection
+        title={`results of ${props.filters.inputValue}`}
+        cardList={searchContent}
+        layoutMode={props.layoutMode}
+      />
     );
 
   return (

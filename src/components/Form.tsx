@@ -15,7 +15,7 @@ const initialInputContent = {
   description: "",
   status: false,
   favorite: false,
-  date: "",
+  date: new Date(),
 };
 
 const Form = (props: Props) => {
@@ -32,13 +32,14 @@ const Form = (props: Props) => {
     e.preventDefault();
 
     props.cardContent ? updateTask(inputContent) : addTask({ 
-    title: "test 1",
-    short_description: "test 1",
-    description: "test 1 test 1 test 1 test 1",
+    title: inputContent.title,
+    short_description: inputContent.short_description,
+    description: inputContent.description,
     status: false,
     favorite: false,
-    date: "28/2/2026"})
+    date: new Date()})
   
+    router.push('/')
   };
 
   useEffect(() => {

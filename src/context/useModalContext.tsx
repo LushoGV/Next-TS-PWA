@@ -31,7 +31,7 @@ export const ModalProvider = ({ children }: ProviderProps) => {
     },
     cancel: {
       text: "",
-      function: () => {},
+      function: () => changeModalState(),
     },
   });
   const [cardModalState, seCardModalState] = useState<number | undefined>(undefined);
@@ -47,8 +47,8 @@ export const ModalProvider = ({ children }: ProviderProps) => {
         function: params.confirm.function,
       },
       cancel: {
-        text: params.confirm.text,
-        function: params.confirm.function,
+        text: params.cancel.text,
+        function: params.cancel.function,
       },
     });
   };

@@ -3,11 +3,14 @@ import Modal from "./Modal";
 import { useModalContext } from "@/context/useModalContext";
 
 const ModalSection = () => {
-  const { modalState, cardModalState, changeCardModalState } = useModalContext();
+  const { modalState, changeModalState, cardModalState, changeCardModalState } = useModalContext();
 
   return (
     <section
-      onClick={() => cardModalState && changeCardModalState()}
+      onClick={() =>
+        (cardModalState && changeCardModalState()) ||
+        (modalState && changeModalState())
+      }
       className={`w-full h-screen  ${
         cardModalState || modalState
           ? "z-50 bg-black bg-opacity-25"

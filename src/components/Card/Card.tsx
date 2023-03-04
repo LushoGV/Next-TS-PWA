@@ -4,6 +4,7 @@ import CardMenu from "./CardMenu";
 import FavoriteButton from "../FavoriteButton";
 import CardStatus from "./CardStatus";
 import { useTaskContext } from "@/context/useTaskContext";
+import CardDate from "./CardDate";
 
 const Card = (props: iTask) => {
   const { changeCardModalState } = useModalContext();
@@ -29,17 +30,15 @@ const Card = (props: iTask) => {
         </div>
       </header>
 
-      <section className="px-4">
+      <section className="px-4 truncate">
         <span className="text-primaryBlue font-semibold">
           {props.short_description}
         </span>
-        <h3 className="text-xl">{props.title}</h3>
+        <h3 className="text-2xl first-letter:uppercase max-w-[230px] md:max-w-none truncate">{props.title}</h3>
       </section>
 
       <footer className="px-4 py-2">
-        <span className="text-primaryGrey font-semibold text-xs">
-          {props.date}
-        </span>
+        <CardDate date={props.date} />
       </footer>
     </article>
   );

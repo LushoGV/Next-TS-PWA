@@ -1,8 +1,8 @@
-import React from "react";
 import { useRouter } from "next/router";
 import { MdClose } from "react-icons/md";
 import { TbEdit, TbTrash } from "react-icons/tb";
 import { useTaskContext } from "@/context/useTaskContext";
+import { useModalContext } from "@/context/useModalContext";
 
 type Props = {
   cardId: number;
@@ -11,6 +11,7 @@ type Props = {
 };
 
 const OptionsMenu = (props: Props) => {
+  const {changeModalContent, changeModalState } = useModalContext()
   const {removeTask} = useTaskContext()
   const router = useRouter();
 
@@ -23,8 +24,19 @@ const OptionsMenu = (props: Props) => {
   }
 
   const deleteFunction = () => {
-    console.log("first")
-    removeTask(props.cardId)
+    changeModalContent({
+      title: "Delete Task?",
+      description: "Iadawdad",
+      confirm: {
+        text: "Yes",
+        function: () => removeTask(props.cardId)
+      },
+      cancel: {
+        text: "No",
+      }
+    })
+    changeModalState()
+    // removeTask(props.cardId)
   }
 
   return (

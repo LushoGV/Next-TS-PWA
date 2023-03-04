@@ -16,7 +16,7 @@ interface newTask {
   description: string;
   status: boolean;
   favorite: boolean;
-  date: string;
+  date: Date;
 }
 
 const TaskContext = createContext<context>({} as context)
@@ -58,7 +58,9 @@ export const TaskProvider = ({children}:PropsWithChildren) => {
   }
 
   useEffect(()=>{
-    setTasks(JSON.parse(localStorage.tasksArr))
+    if(localStorage.tasksArr){
+      setTasks(JSON.parse(localStorage.tasksArr))
+    }
   },[])
 
   return(
