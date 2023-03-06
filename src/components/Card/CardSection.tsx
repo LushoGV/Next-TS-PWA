@@ -10,7 +10,7 @@ type Props = {
 const CardSection = (props: Props) => (
   <section className="mb-8 mx-4 lg:mx-0">
     {props.title !== null && (
-      <header className="py-6 text-3xl first-letter:uppercase text-secondaryBlue max-w-[478px] lg:max-w-none truncate">
+      <header className="py-6 text-3xl first-letter:uppercase text-secondaryBlue dark:text-primaryDarkModeBlue max-w-[478px] lg:max-w-none truncate">
         {props.title}
       </header>
     )}

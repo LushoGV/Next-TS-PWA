@@ -10,7 +10,7 @@ const CreateTaskButton = (props: Props) => {
 
   if(props.mobileMode) return(
     <button
-    className="lg:hidden mt-2 my-5 border-[1px] border-primaryGrey bg-primaryBlue p-4 rounded-full shadow-md"
+    className="lg:hidden mt-2 my-5 border-[1px] border-primaryGrey dark:border-primaryBlack bg-primaryBlue p-4 rounded-full shadow-md"
     onClick={() => router.push("/tasks/new")}
   >
     <span className="text-primaryWhite text-3xl">
@@ -23,7 +23,7 @@ const CreateTaskButton = (props: Props) => {
 
   return (
     <button
-      className="hidden lg:flex items-center border-[1px] border-primaryGrey bg-primaryBlue px-3 shadow-md ml-3"
+      className="hidden lg:flex items-center border-[1px] border-primaryGrey dark:border-primaryBlack bg-primaryBlue px-3 shadow-md ml-3"
       onClick={() => router.push("/tasks/new")}
     >
       <span className="text-primaryWhite font-semibold flex items-center justify-center">

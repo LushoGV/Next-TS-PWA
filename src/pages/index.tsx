@@ -1,13 +1,10 @@
 import Head from "next/head";
 import Header from "@/components/Header/Header";
-import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { useState } from "react";
 import { iFilters } from "@/interfaces";
 import CardContainer from "@/components/Card/CardContainer";
-import data from "../fakeData.json";
 import FiltersBar from "@/components/Filter/FiltersBar";
 import CreateTaskButton from "@/components/CreateTaskButton";
-import Form from "@/components/Form";
 
 export default function Home() {
   const [filtersBarState, setFiltersBarState] = useState<boolean>(true);
@@ -31,7 +28,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="min-h-screen relative z-40">
-        <section className="z-40 sticky top-0 bg-secondaryWhite">
+        <section className="z-40 sticky top-0 bg-secondaryWhite dark:bg-secondaryBlack">
           <Header
             filtersBarState={filtersBarState}
             changeFiltersBarState={changeFiltersBarState}
@@ -50,14 +47,12 @@ export default function Home() {
         <section className="max-w-7xl w-full mx-auto lg:px-4">
           <CardContainer
             filters={filters}
-            cardList={data.cards}
             filtersBarState={filtersBarState}
             layoutMode={layoutMode}
           />
         </section>
         
         <div className="flex flex-col items-center right-0 bottom-0 fixed">
-          <ScrollToTopButton />
           <CreateTaskButton mobileMode />
         </div>
       </main>

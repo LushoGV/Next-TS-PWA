@@ -4,7 +4,6 @@ import { useTaskContext } from "@/context/useTaskContext";
 import { iTask } from "@/interfaces";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import data from "../fakeData.json";
 
 const FormLayout = () => {
   const [cardContent, setCardContent] = useState<iTask>();
@@ -26,7 +25,7 @@ const FormLayout = () => {
   return (
     <>
       <header className="w-full sticky top-0 z-50"><Navbar /></header>
-      <main className="flex bg-secondaryWhite w-full z-30 relative">
+      <main className="flex w-full z-30 relative">
         <Form cardContent={cardContent} />
       </main>
     </>

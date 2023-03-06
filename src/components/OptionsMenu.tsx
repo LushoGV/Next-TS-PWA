@@ -44,7 +44,7 @@ const OptionsMenu = (props: Props) => {
       <li
         className={`px-2 ${
           props.borders && "border-r-[1px]"
-        } border-primaryGrey text-secondaryGrey hover:text-primaryBlue text-2xl cursor-pointer`}
+        } border-primaryGrey dark:border-primaryBlack text-secondaryGrey hover:text-primaryBlue text-2xl cursor-pointer`}
         onClick={editFunction}
       >
         <abbr title="Edit">
@@ -54,7 +54,7 @@ const OptionsMenu = (props: Props) => {
       <li
         className={`px-2 ${
           props.borders && "border-r-[1px]"
-        } border-primaryGrey text-secondaryGrey hover:text-red-500 text-2xl cursor-pointer`}
+        } border-primaryGrey dark:border-primaryBlack text-secondaryGrey hover:text-red-500 text-2xl cursor-pointer`}
         onClick={deleteFunction}
       >
         <abbr title="Delete">
@@ -62,7 +62,7 @@ const OptionsMenu = (props: Props) => {
         </abbr>
       </li>
       <li
-        className="pl-2 border-primaryGrey text-secondaryGrey hover:text-primaryBlue text-2xl cursor-pointer"
+        className="pl-2 border-primaryGrey dark:border-primaryBlack text-secondaryGrey hover:text-primaryBlue text-2xl cursor-pointer"
         onClick={() => props.closeFunction()}
       >
         <abbr title="Close">

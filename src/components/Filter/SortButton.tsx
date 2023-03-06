@@ -40,7 +40,7 @@ const SortButton = (props: Props) => {
       </button>
 
       {sortMenuState && (
-        <div className="absolute top-0 mt-[28px] lg:mt-[42px] border-[1px] border-primaryGrey bg-primaryWhite shadow-md">
+        <div className="absolute top-0 mt-[28px] lg:mt-[42px] border-[1px] border-primaryGrey dark:border-primaryBlack bg-primaryWhite dark:bg-primaryBlack shadow-md">
           <ul>
             {sortOptions.map((element, index) => (
               <li
@@ -52,7 +52,7 @@ const SortButton = (props: Props) => {
                     : "text-secondaryGrey"
                 } ${
                   index !== sortOptions.length - 1 && "border-b-[1px]"
-                } border-primaryGrey hover:text-primaryBlue cursor-pointer`}
+                } border-primaryGrey dark:border-primaryBlack hover:text-primaryBlue cursor-pointer`}
               >
                 {element.text}
               </li>

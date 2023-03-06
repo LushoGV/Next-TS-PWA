@@ -19,7 +19,7 @@ const Card = (props: iTask) => {
   return (
     <article
       onClick={() => changeCardModalState(props.id)}
-      className="flex flex-col bg-primaryWhite justify-between border-[1px] border-primaryGrey min-w-[260px] min-h-[240px] p-3 hover:shadow-lg hover:cursor-pointer lg:hover:-translate-y-3 transition-all duration-300"
+      className="flex flex-col bg-primaryWhite dark:bg-primaryBlack justify-between border-[1px] border-primaryGrey dark:border-primaryBlack min-w-[260px] min-h-[240px] p-3 hover:shadow-lg hover:cursor-pointer lg:hover:-translate-y-3 transition-all duration-300"
     >
       <header className="flex items-start justify-between p-4 pb-1">
         <CardStatus status={props.status} function={statusFunction} />
@@ -34,7 +34,7 @@ const Card = (props: iTask) => {
         <span className="text-primaryBlue font-semibold">
           {props.short_description}
         </span>
-        <h3 className="text-2xl first-letter:uppercase max-w-[230px] md:max-w-none truncate">{props.title}</h3>
+        <h3 className="dark:text-white text-2xl first-letter:uppercase max-w-[230px] md:max-w-none truncate">{props.title}</h3>
       </section>
 
       <footer className="px-4 py-2">

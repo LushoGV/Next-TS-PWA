@@ -33,7 +33,7 @@ const CardModal = (props: Props) => {
 
   return (
     <article
-      className="z-40 bg-primaryWhite border-[1px] border-secondaryGrey max-w-xl w-full mx-2"
+      className="z-40 bg-primaryWhite dark:bg-primaryBlack border-[1px] border-secondaryGrey dark:border-primaryBlack max-w-xl w-full mx-2 dark:text-white"
       onClick={(e) => e.stopPropagation()}
     >
       <header className="flex items-start justify-between p-4">
