@@ -26,7 +26,7 @@ const OptionsMenu = (props: Props) => {
   const deleteFunction = () => {
     changeModalContent({
       title: "Delete Task?",
-      description: "Iadawdad",
+      description: "if you deleted a task, it cannot be restored.",
       confirm: {
         text: "Yes",
         function: () => removeTask(props.cardId),

@@ -11,7 +11,7 @@ const CreateTaskButton = (props: Props) => {
   if (props.mobileMode)
     return (
       <button
-        className="lg:hidden mt-2 my-5 border-[1px] border-primaryGrey dark:border-primaryBlack bg-primaryBlue p-4 rounded-full shadow-md"
+        className="lg:hidden mt-2 my-5 mr-3 border-[1px] border-primaryGrey dark:border-primaryBlack bg-primaryBlue p-4 rounded-full shadow-md"
         onClick={() => router.push("/tasks/new")}
       >
         <span className="text-primaryWhite text-3xl">

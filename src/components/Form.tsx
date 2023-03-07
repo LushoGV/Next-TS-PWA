@@ -76,7 +76,7 @@ const Form = (props: Props) => {
       className="border-[1px] border-primaryGrey dark:border-primaryBlack bg-primaryWhite dark:bg-primaryBlack w-full max-w-xl m-auto lg:mt-6"
       onSubmit={(e) => handleSubmit(e)}
     >
-      <header className="p-4 flex items-center border-b-[1px] border-primaryGrey dark:border-primaryBlack">
+      <header className="p-4 flex items-center border-b-[1px] border-primaryGrey dark:border-primaryBlack mr-5">
         <button
           className="mx-auto ml-0 border-[1px] border-primaryGrey dark:border-primaryBlack p-3 text-sm text-primaryBlue"
           onClick={(e) =>{e.preventDefault(), router.push("/")}}

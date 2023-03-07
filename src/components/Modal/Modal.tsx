@@ -21,10 +21,10 @@ const Modal = () => {
           </abbr>
         </button>
       </header>
-      <section className="py-2 px-4 dark:text-secondaryGrey">
+      <section className="py-2 px-4 dark:text-secondaryGrey text-lg first-letter:uppercase">
         {modalContent.description && <p>{modalContent.description}</p>}
       </section>
-      <footer className="mt-1 p-4 flex justify-end">
+      <footer className="p-4 flex justify-end">
         <button
           className=" border-[1px] border-secondaryGrey bg-red-500 text-white py-2 px-5 mr-2 hover:brightness-125 dark:border-primaryBlack"
           onClick={() => {
