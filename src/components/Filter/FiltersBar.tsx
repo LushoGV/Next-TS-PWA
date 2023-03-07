@@ -40,23 +40,24 @@ const FiltersBar = (props: Props) => {
 
       <section className="flex w-full lg:w-auto mb-5 lg:m-0 px-4 lg:px-0">
         <SortButton changeFilters={props.changeFilters} />
-        
+
         <div className="hidden lg:flex">
-        {layoutOptions.map((element, index) => (
-          <button
-            className={`${
-              props.layoutMode === element.name
-                ? "text-primaryBlue"
-                : "text-secondaryGrey"
-            } ${element.name === "grid" ? "text-sm" : "text-xl"} ${index !== layoutOptions.length-1 && "pr-2"}`}
-            onClick={() => props.changeLayout(element.name)}
-            key={index}
-          >
-            <abbr title={`${element.name} view`}>{element.icon}</abbr>
-          </button>
-        ))}
+          {layoutOptions.map((element, index) => (
+            <button
+              className={`${
+                props.layoutMode === element.name
+                  ? "text-primaryBlue"
+                  : "text-secondaryGrey"
+              } ${element.name === "grid" ? "text-sm" : "text-xl"} ${
+                index !== layoutOptions.length - 1 && "pr-2"
+              }`}
+              onClick={() => props.changeLayout(element.name)}
+              key={index}
+            >
+              <abbr title={`${element.name} view`}>{element.icon}</abbr>
+            </button>
+          ))}
         </div>
-        
       </section>
     </nav>
   );

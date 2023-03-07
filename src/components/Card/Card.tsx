@@ -1,9 +1,9 @@
 import { iTask } from "../../interfaces";
 import { useModalContext } from "@/context/useModalContext";
-import CardMenu from "./CardMenu";
-import FavoriteButton from "../FavoriteButton";
-import CardStatus from "./CardStatus";
 import { useTaskContext } from "@/context/useTaskContext";
+import FavoriteButton from "../FavoriteButton";
+import CardMenu from "./CardMenu";
+import CardStatus from "./CardStatus";
 import CardDate from "./CardDate";
 
 const Card = (props: iTask) => {

@@ -2,24 +2,25 @@ import { useRouter } from "next/router";
 import { MdAdd } from "react-icons/md";
 
 type Props = {
-  mobileMode?: boolean
+  mobileMode?: boolean;
 };
 
 const CreateTaskButton = (props: Props) => {
   const router = useRouter();
 
-  if(props.mobileMode) return(
-    <button
-    className="lg:hidden mt-2 my-5 border-[1px] border-primaryGrey dark:border-primaryBlack bg-primaryBlue p-4 rounded-full shadow-md"
-    onClick={() => router.push("/tasks/new")}
-  >
-    <span className="text-primaryWhite text-3xl">
-      <abbr title="Create task">
-        <MdAdd />
-      </abbr>
-    </span>
-  </button>
-  )
+  if (props.mobileMode)
+    return (
+      <button
+        className="lg:hidden mt-2 my-5 border-[1px] border-primaryGrey dark:border-primaryBlack bg-primaryBlue p-4 rounded-full shadow-md"
+        onClick={() => router.push("/tasks/new")}
+      >
+        <span className="text-primaryWhite text-3xl">
+          <abbr title="Create task">
+            <MdAdd />
+          </abbr>
+        </span>
+      </button>
+    );
 
   return (
     <button

@@ -23,7 +23,8 @@ const Header = (props: Props) => {
       <Navbar />
       <section
         className={`flex flex-col lg:flex-row justify-between items-center max-w-7xl w-full mx-auto mt-5 lg:pt-1 lg:px-4 pb-4 lg:pb-6 ${
-          !props.filtersBarState && "border-b-[1px] border-primaryGrey dark:border-primaryBlack"
+          !props.filtersBarState &&
+          "border-b-[1px] border-primaryGrey dark:border-primaryBlack"
         }`}
       >
         <h1 className="text-3xl lg:text-4xl px-1 text-secondaryBlue dark:text-primaryDarkModeBlue mb-2 lg:mb-0">

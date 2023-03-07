@@ -11,8 +11,8 @@ type Props = {
 };
 
 const OptionsMenu = (props: Props) => {
-  const {changeModalContent, changeModalState } = useModalContext()
-  const {removeTask} = useTaskContext()
+  const { changeModalContent, changeModalState } = useModalContext();
+  const { removeTask } = useTaskContext();
   const router = useRouter();
 
   const editFunction = () => {
@@ -21,7 +21,7 @@ const OptionsMenu = (props: Props) => {
       pathname: `/tasks/${props.cardId}`,
       query: { id: props.cardId },
     });
-  }
+  };
 
   const deleteFunction = () => {
     changeModalContent({
@@ -29,15 +29,15 @@ const OptionsMenu = (props: Props) => {
       description: "Iadawdad",
       confirm: {
         text: "Yes",
-        function: () => removeTask(props.cardId)
+        function: () => removeTask(props.cardId),
       },
       cancel: {
         text: "No",
-      }
-    })
-    changeModalState()
+      },
+    });
+    changeModalState();
     // removeTask(props.cardId)
-  }
+  };
 
   return (
     <ul className="flex">

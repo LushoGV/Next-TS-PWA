@@ -24,7 +24,11 @@ const CardMenu = (props: Props) => {
 
       {menuState && (
         <div className="absolute top-0 right-0 flex bg-primaryWhite dark:bg-primaryBlack border-[1px] border-primaryGrey dark:border-primaryBlack shadow-md py-2 pr-2">
-          <OptionsMenu closeFunction={changeMenuState} cardId={props.cardId} borders />
+          <OptionsMenu
+            closeFunction={changeMenuState}
+            cardId={props.cardId}
+            borders
+          />
         </div>
       )}
     </div>

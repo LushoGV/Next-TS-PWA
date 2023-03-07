@@ -34,7 +34,6 @@ const SortButton = (props: Props) => {
         className={`text-secondaryGrey z-30 lg:px-4 flex items-center justify-between font-semibold uppercase`}
         onClick={() => setSortMenuState(!sortMenuState)}
       >
-        
         by {selectedOption.text}
         <SlArrowDown className="text-sm ml-3 mt-[1px]" />
       </button>

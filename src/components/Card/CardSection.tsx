@@ -17,7 +17,9 @@ const CardSection = (props: Props) => (
     <section
       className={`${
         props.layoutMode === "grid" ? "grid" : "flex flex-col"
-      } sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-6 ${props.title === null && "py-6"}`}
+      } sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-6 ${
+        props.title === null && "py-6"
+      }`}
     >
       {props.cardList.map((element, index) => (
         <Card
