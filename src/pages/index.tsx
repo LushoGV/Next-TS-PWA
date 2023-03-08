@@ -19,6 +19,18 @@ export default function Home() {
   const changeFilters = (filterName: string, value: string | number) =>
     setFilters({ ...filters, [filterName]: value });
 
+    const [source, setSource] = useState<string>("")
+
+    const handleCapture = ({target}: React.ChangeEvent<HTMLInputElement>) => {
+      if (target.files) {
+        if (target.files.length !== 0) {
+          const file = target.files[0];
+          const newUrl = URL.createObjectURL(file);
+          setSource(newUrl);
+        }
+      }
+    }
+
   return (
     <>
       <Head>
@@ -50,6 +62,15 @@ export default function Home() {
             filtersBarState={filtersBarState}
             layoutMode={layoutMode}
           />
+
+          <input
+            accept="image/*"
+            id="icon-button-file"
+            type="file"
+            capture="environment"
+            onChange={(e) => handleCapture(e)}
+          />    
+          
         </section>
         
         <div className="flex flex-col items-center right-0 bottom-0 fixed">
