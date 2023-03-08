@@ -1,4 +1,4 @@
-# Nextjs Task Pogressive Web App
+# Next.js Task Pogressive Web App
 
 # Tecnologías utilizadas
 
@@ -7,9 +7,9 @@
 * Nextjs-pwa
 
 ---
-![](./src/images/HomeImage.png)
+![](./src/media/images/HomeImage.png)
 
-![](./src/images/sectionImage.png)
+![](./src/media/images/sectionImage.png)
 
 ---
 
