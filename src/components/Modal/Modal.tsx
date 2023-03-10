@@ -35,7 +35,7 @@ const Modal = () => {
         </button>
         <button
           className="border-[1px] border-secondaryGrey text-secondaryBlue dark:text-secondaryGrey py-2 px-5 hover:brightness-125 dark:border-primaryBlack"
-          onClick={changeModalState}
+          onClick={() => changeModalState()}
         >
           {modalContent.cancel.text}
         </button>

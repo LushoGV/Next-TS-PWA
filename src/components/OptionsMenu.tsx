@@ -11,7 +11,7 @@ type Props = {
 };
 
 const OptionsMenu = (props: Props) => {
-  const { changeModalContent, changeModalState } = useModalContext();
+  const { changeModalContent, changeModalState, changeCardModalState } = useModalContext();
   const { removeTask } = useTaskContext();
   const router = useRouter();
 
@@ -29,14 +29,13 @@ const OptionsMenu = (props: Props) => {
       description: "if you deleted a task, it cannot be restored.",
       confirm: {
         text: "Yes",
-        function: () => removeTask(props.cardId),
+        function: () => {removeTask(props.cardId), changeCardModalState(), changeModalState() },
       },
       cancel: {
         text: "No",
       },
     });
     changeModalState();
-    // removeTask(props.cardId)
   };
 
   return (
